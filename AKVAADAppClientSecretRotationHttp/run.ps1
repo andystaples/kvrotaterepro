@@ -24,8 +24,10 @@ function AddSecretToKeyVault($keyVAultName,$secretName,$secretvalue,$exprityDate
 
 function RoatateSecret($keyVaultName,$secretName){
     #Retrieve Secret
-    $logFilePath1 = "/get-kvs-$(Get-Date -Format FileDateTimeUniversal)_Trace-Command.log"
-    $logFilePath2 = "/get-kvs-$(Get-Date -Format FileDateTimeUniversal)_Get-AKVS.log"
+    $logFilePath1 = "./get-kvs-$(Get-Date -Format FileDateTimeUniversal)_Trace-Command.log"
+    $logFilePath2 = "./get-kvs-$(Get-Date -Format FileDateTimeUniversal)_Get-AKVS.log"
+
+    Write-Information "Current Path: " + $(Get-Location)
 
     Start-Transcript -Path $logFilePath2
     $Secret = Trace-Command -option All -Name * { Get-AzKeyVaultSecret -VaultName $keyVAultName -Name $secretName -Debug -Verbose } -FilePath $logFilePath1 -ListenerOption 'DateTime'
