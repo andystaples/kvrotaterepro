@@ -28,7 +28,7 @@ function RoatateSecret($keyVaultName,$secretName){
     $logFilePath2 = "./get-kvs-$(Get-Date -Format FileDateTimeUniversal)_Get-AKVS.log"
 
     Start-Transcript -Path $logFilePath2
-    $Secret = Trace-Command -option All -Name * { Get-AzKeyVaultSecret -VaultName $keyVAultName -Name $secretName -Debug -Verbose } -FilePath $logFilePath1 -ListenerOption 'DateTime'
+    $Secret = Trace-Command -option All -Name * { Get-AzKeyVaultSecret -VaultName $keyVAultName -Name $secretName -Debug -Verbose } -FilePath $logFilePath1
     Stop-Transcript
     
     Write-Host "Secret Retrieved"
