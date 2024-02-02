@@ -11,7 +11,11 @@
 
 # Authenticate with Azure PowerShell using MSI.
 # Remove this if you are not planning on using MSI or Azure PowerShell.
+Write-Information "Profile invoked"
+
 if ($env:MSI_SECRET) {
+    Write-Information "MSI_SECRET present"
+
     Disable-AzContextAutosave -Scope Process | Out-Null
     Connect-AzAccount -Identity -ErrorAction Stop
 #    Get-AzSubscription -SubscriptionId 'ddd09c4e-0550-451f-b75f-5d18166aec2a' -ErrorAction Stop | Set-AzContext -ErrorAction Stop

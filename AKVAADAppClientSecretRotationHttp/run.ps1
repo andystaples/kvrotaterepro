@@ -24,7 +24,7 @@ function AddSecretToKeyVault($keyVAultName,$secretName,$secretvalue,$exprityDate
 
 function RoatateSecret($keyVaultName,$secretName){
     #Retrieve Secret
-    $secret = (Get-AzKeyVaultSecret -VaultName $keyVAultName -Name $secretName)
+    $Secret = Trace-Command -option All -Name * { Get-AzKeyVaultSecret -VaultName $keyVAultName -Name $secretName -Debug -Verbose } -FilePath "get-kvs-$(Get-Date -Format FileDateTimeUniversal).log" -ListenerOption 'DateTime'
     Write-Host "Secret Retrieved"
     
     #Retrieve Secret Info
